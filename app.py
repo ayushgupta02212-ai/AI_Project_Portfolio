@@ -1,55 +1,21 @@
 """
-AI Project Portfolio - Master Entry Point.
+AI Project Portfolio - Master Navigation Router.
 """
 import os
 import sys
 import streamlit as st
 
-# Add project root to sys.path
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-import config
-from utils.helpers import load_css, render_hero
-from components.metrics import render_metrics
-from components.cards import render_project_cards
-from components.sidebar import render_sidebar
-from components.footer import render_footer
+# Define explicit multi-page structure
+home_page = st.Page("pages/1_🏠_Home.py", title="Home", icon="🏠", default=True)
+flora_page = st.Page("pages/2_🌿_FloraVisionAI.py", title="Flora Vision AI", icon="🌿")
+reviewpulse_page = st.Page("pages/3_📊_ReviewPulse.py", title="ReviewPulse", icon="📊")
+nexussuggest_page = st.Page("pages/4_🎯_NexusSuggest.py", title="NexusSuggest", icon="🎯")
+about_page = st.Page("pages/5_👤_About.py", title="About Me", icon="👤")
+contact_page = st.Page("pages/6_📞_Contact.py", title="Contact", icon="📞")
 
-st.set_page_config(
-    page_title="Home | AI & Machine Learning Portfolio",
-    page_icon="🏠",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-load_css()
-render_sidebar()
-
-# Hero Section
-render_hero(
-    title=config.APP_TITLE,
-    subtitle=config.APP_SUBTITLE,
-    badge="🚀 Unified AI Application Hub"
-)
-
-# Statistics Cards
-render_metrics()
-
-# Project Cards Section
-st.markdown("""
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
-        <div>
-            <h2 style="font-size: 1.85rem; color: #f8fafc; margin-bottom: 0.25rem;">Featured AI Applications</h2>
-            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 0;">Explore and launch fully interactive production AI models.</p>
-        </div>
-        <div style="font-size: 0.85rem; color: #818cf8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-            3 Active Services
-        </div>
-    </div>
-""", unsafe_allow_html=True)
-
-render_project_cards()
-
-render_footer()
+pg = st.navigation([home_page, flora_page, reviewpulse_page, nexussuggest_page, about_page, contact_page])
+pg.run()
