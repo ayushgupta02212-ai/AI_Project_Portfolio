@@ -19,7 +19,7 @@
     --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 
-html, body, [class*="st-"] {
+html, body, .stApp {
     font-family: 'Inter', sans-serif;
     color: var(--text-primary);
 }
@@ -183,6 +183,32 @@ div.stButton > button:hover {
 div.stButton > button[kind="primary"] {
     background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* File Uploader Clean Styling */
+[data-testid="stFileUploader"] {
+    width: 100%;
+}
+
+[data-testid="stFileUploaderDropzone"] {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.15) !important;
+    border-radius: 14px !important;
+    padding: 1.25rem !important;
+}
+
+[data-testid="stFileUploaderDropzone"] button {
+    border-radius: 10px !important;
+    font-size: 0.88rem !important;
+    padding: 0.4rem 0.9rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+[data-testid="stFileUploaderDropzoneInstructions"] {
+    color: #94a3b8 !important;
+    font-size: 0.88rem !important;
 }
 
 /* Sidebar */
