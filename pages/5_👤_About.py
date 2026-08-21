@@ -1,7 +1,14 @@
 """
 About Me Page - Developer Profile & Career Timeline.
 """
+import os
+import sys
 import streamlit as st
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+
 import config
 from utils.helpers import load_css
 from components.sidebar import render_sidebar

@@ -1,5 +1,5 @@
 """
-NexusSuggest - Hybrid Recommender Engine.
+NexusSuggest - Hybrid Recommender Engine (Low-Memory & Fast Startup).
 """
 import numpy as np
 from typing import List, Dict, Any
@@ -41,7 +41,7 @@ class HybridRecommender:
         if user_id in self.collaborative.user_to_idx:
             u_idx = self.collaborative.user_to_idx[user_id]
             user_mean = self.collaborative.user_means[u_idx]
-            sims = self.collaborative.user_similarity[u_idx]
+            sims = self.collaborative.get_user_similarity_vector(u_idx)
 
             # 1. User-Based predictions
             k = 50
@@ -74,7 +74,7 @@ class HybridRecommender:
 
             if highly_rated_indices:
                 ratings_highly_rated = user_ratings[highly_rated_indices]
-                sims_slice = self.collaborative.item_similarity[:, highly_rated_indices]
+                sims_slice = self.collaborative.get_item_similarity_for_indices(highly_rated_indices)
                 weighted_sum_item = np.dot(sims_slice, ratings_highly_rated)
                 sum_abs_sims_item = np.sum(np.abs(sims_slice), axis=1)
 
